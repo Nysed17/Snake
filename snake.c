@@ -14,6 +14,11 @@ void gotoxy(int x, int y){
 	printf("%c[%d;%df", 0x1B, x, y);
 }
 
+void random_apl(int xa, int ya){
+		int ap = 149;
+		printf("\x1b[31m%c", ap);
+}
+
 void input(){
 	
 	switch(getchar()){
@@ -32,7 +37,7 @@ void input(){
 	}
 }
 
-void tabella(){
+void tabella(int xa, int ya){
 	
 	system("stty -echo");
   system("stty -icanon");
@@ -42,22 +47,36 @@ void tabella(){
 	for ( i = 0 ; i < taby ; i++ ){
 		for ( j = 0 ; j < tabx ; j++ ){
 			if ( i == 0 || i == taby - 1 || j == 0 || j == tabx - 1 ){
-				printf("#");
+				printf("\x1b[32m#");
 			}
 			else printf(" ");
 		}
 		printf("\n");
 	}
-
-	  gotoxy(x,y);
-		printf("O");
-
+	if (y > 29){
+		y--;
+	}
+	if (y < 2){
+		y++;
+	}
+	if (x > 19){
+		x--;
+	}
+	if (x < 2){
+		x++;
+	}
+	gotoxy(xa,ya);
+	random_apl(xa,ya);
+	gotoxy(x,y);
+	printf("\x1b[33mO");
 }
 
 int main(){
-
+	
 	while(!gameover){
-		tabella();
+		int ya = rand()%29+1;
+		int xa = rand()%19+1;
+		tabella(xa,ya);
 		input();
 	}
 
