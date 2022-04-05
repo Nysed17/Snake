@@ -10,7 +10,7 @@ void clr(){
 	system("clear");
 }
 
-void gotoxy(){
+void gotoxy(int x, int y){
 	printf("%c[%d;%df", 0x1B, x, y);
 }
 
@@ -18,12 +18,8 @@ void input(){
 	
 	switch(getchar()){
 		case 'w':
-		for ( i = 0 ; i < 1 ; i++ ){
 			x--;
-			fflush(stdout);
-			sleep(1);
-		}
-			break;
+			break;	
 		case 's':
 			x++;
 			break;
@@ -54,7 +50,7 @@ void tabella(){
 	}
 
 	  gotoxy(x,y);
-		printf("@");
+		printf("O");
 
 }
 
