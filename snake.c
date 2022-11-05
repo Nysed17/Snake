@@ -70,7 +70,6 @@ void tabella(){
 	gotoxy(x,y);
 	printf("\x1b[33mO");
 
-
 		if (xa == x && ya == y){
 			++score;
 			xa = rand()%19+1;
